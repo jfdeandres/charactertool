@@ -1,0 +1,26 @@
+{
+ "formato": "tf-lifo-cifrado-1",
+ "kdf": {
+  "alg": "PBKDF2-SHA256",
+  "iter": 600000,
+  "idIter": 100000
+ },
+ "idSalt": "lJfnxdEElClx6cspovVP/g==",
+ "admin": {
+  "id": "SKLjWZZhzh5Wlg2HMEVcSLOoQlv9bFQLdiT_zwgZMAo",
+  "salt": "ipkH/Q+mQzXX20pV8Vsn0A==",
+  "ck": "sLXkPD2bKPIUhg66Ekz88pbKFsY6oO0obt1PXTpK8D119/SOmKr7ZA==",
+  "ak": "FLqj5DQmP5aeqCi3GGbwzgf27U1kkZce9/vYzGiEUB/Ik7DxuYUIjQ=="
+ },
+ "usuarios": {
+  "FgFJpZQjxyQ5vxSgaW-XU5i7x0tyTgp7GW4q0fD-Gvs": {
+   "salt": "y60TClQoJ0FwXpnURPVstA==",
+   "ck": "TYY6gNA+5fbZG7USuuoMDaEfIs1u1fR0bEaC9gioXgf8tS4hvpkppg=="
+  }
+ },
+ "registro": {
+  "iv": "CVEbLXOEBMiEopzX",
+  "ct": "/e7RqS3Ba//URc5gcHMB0a0gHtwpTF1cx2Vux96/vpoopZnf+M913eDZWslRicQY0pOp6tdq/33IN+nNuxYOm/ZkcO9cTV79klPbBPL8FWmyuogGHN18CyyVBg3IbkemSsMiXDM9RIn4mqzFORNqamtjuqe/8pIipQgC2Da52ep/vwRVvPcTaDnv2Q=="
+ },
+ "actualizado": "2026-10-25T07:59:17.449Z"
+}
