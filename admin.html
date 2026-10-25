@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Administración · Test de fortalezas</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="topbar">
+  <span class="eyebrow">Panel de administración</span>
+  <span class="inline"><a href="index.html" class="linkbtn">Ir al test</a><button type="button" class="linkbtn" id="salir" hidden>Salir</button></span>
+</header>
+
+<section id="cargando" class="card">
+  <p id="cargaMsg">Cargando la configuración de acceso…</p>
+</section>
+
+<!-- Primera vez: crear la cuenta de administración y cifrar el contenido -->
+<section id="setup" class="stack" style="gap:24px" hidden>
+  <div class="stack">
+    <h1>Pon en marcha el test</h1>
+    <p class="muted">Todavía no hay configuración de acceso. Crea tu cuenta de administración y carga el archivo privado con el contenido del test: el panel lo cifrará antes de publicarlo.</p>
+  </div>
+  <div class="card login-card">
+    <form id="setupForm">
+      <label class="field" for="su">Usuario de administración
+        <input type="text" id="su" autocomplete="username" autocapitalize="none" spellcheck="false" required placeholder="Por ejemplo, jose.admin">
+      </label>
+      <label class="field" for="sp1">Clave (mínimo 12 caracteres)
+        <input type="password" id="sp1" autocomplete="new-password" required>
+      </label>
+      <label class="field" for="sp2">Repite la clave
+        <input type="password" id="sp2" autocomplete="new-password" required>
+      </label>
+      <label class="field" for="sf">Archivo de contenido (contenido.privado.json)
+        <input type="file" id="sf" accept=".json,application/json" required>
+      </label>
+      <p class="note">Guarda bien esta clave: sin ella no se puede administrar el test ni recuperar el acceso. No hay forma de restablecerla.</p>
+      <p class="err" id="setupMsg" role="alert" hidden></p>
+      <div class="btns"><button class="btn" type="submit" id="setupBtn">Crear cuenta y cifrar contenido</button></div>
+    </form>
+  </div>
+</section>
+
+<!-- Acceso de administración -->
+<section id="alogin" class="stack" style="gap:24px" hidden>
+  <h1>Acceso de administración</h1>
+  <div class="card login-card">
+    <form id="aloginForm">
+      <label class="field" for="au">Usuario
+        <input type="text" id="au" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      </label>
+      <label class="field" for="ap">Clave
+        <input type="password" id="ap" autocomplete="current-password" required>
+      </label>
+      <p class="err" id="aloginMsg" role="alert" hidden></p>
+      <div class="btns"><button class="btn" type="submit" id="aloginBtn">Entrar</button></div>
+    </form>
+  </div>
+</section>
+
+<!-- Panel -->
+<section id="panel" class="stack" style="gap:24px" hidden>
+  <div class="stack">
+    <h1>Usuarios del test</h1>
+    <p class="muted" id="resumen"></p>
+  </div>
+
+  <div class="warn" id="dirty" hidden><b>Tienes cambios sin guardar.</b> <span id="dirtyTxt"></span></div>
+  <div class="warn" id="noContenido" hidden><b>Falta el contenido cifrado.</b> Carga el archivo de contenido en «Contenido del test» y guarda los cambios.</div>
+
+  <div class="card">
+    <h2>Crear usuario</h2>
+    <form id="crearForm" class="stack">
+      <div class="formgrid">
+        <label class="field" for="nu">Usuario
+          <input type="text" id="nu" autocapitalize="none" spellcheck="false" required placeholder="ana.lopez">
+        </label>
+        <label class="field" for="nn">Nombre (opcional, solo lo ves tú)
+          <input type="text" id="nn" placeholder="Ana López">
+        </label>
+      </div>
+      <label class="field" for="nc">Clave inicial
+        <span class="inline"><input type="text" id="nc" spellcheck="false" autocomplete="off" required><button type="button" class="btn ghost sm" id="genClave">Generar otra</button></span>
+      </label>
+      <p class="note">El usuario admite letras minúsculas, números, punto, guion y guion bajo (de 3 a 32 caracteres). La clave debe tener al menos 10 caracteres; la generada tiene 12.</p>
+      <p class="err" id="crearMsg" role="alert" hidden></p>
+      <div class="btns"><button class="btn" type="submit" id="crearBtn">Añadir usuario</button></div>
+    </form>
+  </div>
+
+  <div class="card" id="credCard" hidden>
+    <h2>Claves pendientes de entregar</h2>
+    <p class="muted">Copia estas claves y entrégalas a cada persona por un canal privado. Solo se muestran mientras esta página esté abierta: no se guardan en ningún sitio.</p>
+    <div class="creds" id="creds"></div>
+    <div class="btns"><button class="btn sm" id="copyCreds" type="button">Copiar claves</button><button class="btn ghost sm" id="clearCreds" type="button">Ya las he entregado</button></div>
+    <span class="toast" id="credMsg" aria-live="polite"></span>
+  </div>
+
+  <div class="card">
+    <h2>Lista de usuarios</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Usuario</th><th>Nombre</th><th>Alta</th><th>Estado</th><th>Acciones</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table></div>
+    <p class="muted" id="vacio" hidden>Todavía no hay usuarios. Crea el primero con el formulario de arriba.</p>
+    <p class="note">«Revocar acceso» impide que esa clave vuelva a abrir el test. Para dar acceso de nuevo, genera una clave nueva.</p>
+  </div>
+
+  <div class="card">
+    <h2>Guardar cambios</h2>
+    <p id="saveTxt"></p>
+    <ol class="steps" id="ghSteps" hidden>
+      <li>Pulsa <b>Descargar archivos</b>. Se descargarán los archivos que han cambiado: <span id="ghFiles"></span>.</li>
+      <li>En tu repositorio de GitHub, abre la carpeta <code>data</code> y elige <b>Add file → Upload files</b>.</li>
+      <li>Arrastra los archivos descargados, que sustituirán a los anteriores, y pulsa <b>Commit changes</b>.</li>
+      <li>Espera uno o dos minutos a que GitHub Pages publique el cambio.</li>
+    </ol>
+    <div class="btns"><button class="btn" id="guardar" type="button">Guardar cambios</button></div>
+    <span class="toast" id="saveMsg" aria-live="polite"></span>
+  </div>
+
+  <div class="card">
+    <h2>Contenido del test</h2>
+    <p>Si modificas las preguntas o los textos del informe en tu archivo <code>contenido.privado.json</code>, cárgalo aquí para cifrar la nueva versión.</p>
+    <label class="field" for="cf">Archivo de contenido
+      <input type="file" id="cf" accept=".json,application/json">
+    </label>
+    <p class="err" id="contMsg" role="alert" hidden></p>
+    <div class="btns"><button class="btn ghost" id="actualizar" type="button">Cifrar y actualizar contenido</button></div>
+  </div>
+
+  <div class="card">
+    <h2>Renovar todas las claves</h2>
+    <p>Úsalo si sospechas que alguien ha conseguido una clave o cuando quieras cortar por completo el acceso de personas revocadas. Se cambia la clave interna de cifrado, se vuelve a cifrar el contenido y se genera una clave nueva para cada usuario activo. Las claves anteriores dejan de funcionar.</p>
+    <div class="formgrid">
+      <label class="field" for="rf">Archivo de contenido
+        <input type="file" id="rf" accept=".json,application/json">
+      </label>
+      <label class="field" for="rp">Tu clave de administración
+        <input type="password" id="rp" autocomplete="current-password">
+      </label>
+    </div>
+    <p class="err" id="renMsg" role="alert" hidden></p>
+    <div class="btns"><button class="btn danger" id="renovar" type="button">Renovar todas las claves</button></div>
+  </div>
+
+  <div class="card">
+    <h2>Cambiar mi clave de administración</h2>
+    <form id="cambioForm" class="stack">
+      <div class="formgrid">
+        <label class="field" for="cp1">Clave nueva (mínimo 12 caracteres)
+          <input type="password" id="cp1" autocomplete="new-password" required>
+        </label>
+        <label class="field" for="cp2">Repite la clave nueva
+          <input type="password" id="cp2" autocomplete="new-password" required>
+        </label>
+      </div>
+      <p class="err" id="cambioMsg" role="alert" hidden></p>
+      <div class="btns"><button class="btn ghost" type="submit">Cambiar clave</button></div>
+    </form>
+  </div>
+
+  <p class="note">Todo se cifra en este navegador antes de publicarse. Los archivos publicados solo contienen datos cifrados: el contenido del test, la lista de usuarios y las copias de la clave de cada persona. Las respuestas y los resultados del test nunca llegan a este panel.</p>
+</section>
+
+<footer class="site-footer">
+  <span class="brand">GARAND CONSULTING</span>
+</footer>
+
+</div>
+
+<script src="js/cripto.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

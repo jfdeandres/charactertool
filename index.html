@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Test de fortalezas basado en método LIFO</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Autodiagnóstico de estilos de comportamiento en condiciones favorables y bajo presión. GARAND CONSULTING.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="topbar" id="topbar" hidden>
+  <span id="who"></span>
+  <span class="inline"><a href="admin.html" id="adminLink" class="linkbtn" hidden>Panel de administración</a><button type="button" class="linkbtn" id="logout">Salir</button></span>
+</header>
+
+<section id="login" class="stack" style="gap:24px">
+  <div class="stack">
+    <span class="eyebrow">Acceso con usuario y clave</span>
+    <h1>Test de fortalezas basado en método LIFO</h1>
+    <p class="muted">Introduce el usuario y la clave que te han facilitado para acceder al test.</p>
+  </div>
+  <div class="card login-card">
+    <form id="loginForm" autocomplete="on">
+      <label class="field" for="lu">Usuario
+        <input type="text" id="lu" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      </label>
+      <label class="field" for="lp">Clave
+        <input type="password" id="lp" name="password" autocomplete="current-password" required>
+      </label>
+      <p class="err" id="loginMsg" role="alert" hidden></p>
+      <div class="btns"><button class="btn" id="loginBtn" type="submit">Entrar</button></div>
+    </form>
+    <p class="note">Si no tienes usuario o has olvidado tu clave, pídesela a la persona que te ha invitado a hacer el test. El contenido del test está cifrado y solo se abre con un acceso válido.</p>
+  </div>
+</section>
+
+<section id="intro" class="stack" style="gap:24px" hidden>
+  <div class="stack">
+    <span class="eyebrow">Autodiagnóstico · 24 preguntas · 10 a 15 minutos</span>
+    <h1>Test de fortalezas basado en método LIFO</h1>
+    <p class="muted">Descubre cuál es tu forma preferida de actuar, cómo cambia cuando la situación se complica y qué fortalezas puedes estar usando en exceso.</p>
+  </div>
+
+  <div class="card">
+    <h2>Qué mide este test</h2>
+    <p>Todos usamos cuatro orientaciones de comportamiento, pero cada uno prefiere unas más que otras. Ninguna es mejor que otra: cada una es una fortaleza, y usada en exceso se convierte en una debilidad.</p>
+    <div class="styles-grid">
+      <div class="style-tile t-ap"><b>Apoyar / Ceder</b><span>Hacer lo correcto, buscar la excelencia y ayudar a los demás. Aporta confianza, lealtad e idealismo.</span></div>
+      <div class="style-tile t-di"><b>Dirigir / Tomar</b><span>Actuar, tomar la iniciativa y conseguir resultados. Aporta energía, rapidez y seguridad.</span></div>
+      <div class="style-tile t-co"><b>Conservar / Mantener</b><span>Analizar, planificar y proteger lo conseguido. Aporta método, rigor y prudencia.</span></div>
+      <div class="style-tile t-ad"><b>Adaptar / Negociar</b><span>Conectar con las personas y buscar acuerdos. Aporta flexibilidad, tacto y entusiasmo.</span></div>
+    </div>
+    <p>Las preguntas describen situaciones variadas del día a día profesional. Al final, el informe te muestra tu perfil en condiciones favorables y en condiciones de presión o conflicto.</p>
+  </div>
+
+  <div class="card">
+    <h2>Cómo responder</h2>
+    <ol class="steps">
+      <li>Cada pregunta tiene una situación y cuatro respuestas posibles.</li>
+      <li>Toca las cuatro respuestas en orden, de la que <b>más</b> se parece a lo que harías a la que <b>menos</b>. La primera recibe un 4, la segunda un 3, la tercera un 2 y la última un 1.</li>
+      <li>Para corregir, toca de nuevo una respuesta ya marcada: se borra esa puntuación y las siguientes.</li>
+      <li>Piensa en lo que haces de verdad, no en lo que te gustaría hacer ni en lo que se espera de ti. Responde con rapidez: la primera impresión suele ser la más fiable.</li>
+    </ol>
+    <div class="privacy"><b>Tus datos no se registran</b><span>Tus respuestas, tus resultados y los datos de contexto que indicas <strong>no se registran en ninguna base de datos</strong> ni se envían a ningún servidor. Solo se guardan en este dispositivo, cifrados con tu clave, para que puedas continuar el test o volver a ver tu informe. GARAND CONSULTING no tiene acceso a la información de las personas que realizan el test.</span></div>
+    <p class="note">Todas las respuestas son razonables y no hay ninguna correcta. Aunque dos te parezcan igual de ciertas, ordénalas todas: el test compara tus preferencias entre sí, no te compara con otras personas.</p>
+  </div>
+
+  <div class="card">
+    <h2>Tu contexto profesional</h2>
+    <p>Las situaciones del test se redactan con el vocabulario de tu sector, tu área y tu etapa profesional para que te resulten familiares. Lo que se mide en cada respuesta es igual para todos, así que los resultados siguen siendo comparables entre personas.</p>
+    <div class="formgrid">
+      <label class="field" for="sector">Sector
+        <select id="sector"><option value="">Elige tu sector</option></select>
+      </label>
+      <label class="field" for="area">Área de trabajo
+        <select id="area"><option value="">Elige tu área</option></select>
+      </label>
+      <label class="field" for="edad">Edad
+        <select id="edad"><option value="">Elige tu tramo de edad</option><option value="m30">Menos de 30 años</option><option value="30-44">De 30 a 44 años</option><option value="45-59">De 45 a 59 años</option><option value="60">60 años o más</option></select>
+      </label>
+      <label class="field" for="lead">¿Tienes personas a tu cargo?
+        <select id="lead"><option value="">Elige una opción</option><option value="si">Sí</option><option value="no">No</option></select>
+      </label>
+      <label class="field" for="nombre">Tu nombre (opcional)
+        <input type="text" id="nombre" autocomplete="name" placeholder="Por ejemplo, Ana López">
+      </label>
+    </div>
+    <div class="preview" id="preview" hidden><span class="eyebrow">Así verás una de las preguntas</span><q id="previewQ"></q></div>
+    <p class="note">Estos datos solo sirven para adaptar las preguntas y aparecen en tu informe. No se envían a ningún sitio.</p>
+    <p class="err" id="err" hidden>Elige tu sector, tu área, tu edad y si tienes personas a tu cargo para empezar.</p>
+    <div class="btns">
+      <button class="btn" id="start">Empezar el test</button>
+      <button class="btn ghost" id="resume" hidden>Continuar donde lo dejé</button>
+      <button class="btn ghost" id="sample">Ver un informe de ejemplo</button>
+    </div>
+    <div class="btns"><button class="btn danger sm" id="borrar" type="button">Borrar mis datos de este dispositivo</button></div>
+    <span class="toast" id="borradoMsg" aria-live="polite"></span>
+  </div>
+
+  <p class="note">Este autodiagnóstico es una herramienta original de desarrollo inspirada en el enfoque de orientaciones de vida de Stuart Atkins y Allan Katcher. No es el cuestionario oficial LIFO®, que es una marca registrada y requiere un facilitador acreditado. Úsalo como punto de partida para la reflexión, no como evaluación psicológica.</p>
+</section>
+
+<section id="test" class="card" hidden>
+  <span class="eyebrow" id="qcount">Pregunta 1 de 24</span>
+  <div class="progress"><i id="bar" style="width:0%"></i></div>
+  <div class="stem" id="stem"></div>
+  <div class="opts" id="opts"></div>
+  <p class="hint" id="hint">Toca primero la respuesta que más se parece a lo que harías.</p>
+  <div class="btns">
+    <button class="btn ghost" id="prev">Anterior</button>
+    <button class="btn" id="next" disabled>Siguiente</button>
+  </div>
+</section>
+
+<section id="results" class="stack" style="gap:24px" hidden></section>
+
+<footer class="site-footer" id="footer">
+  <span class="brand">GARAND CONSULTING</span>
+  <a href="admin.html">Acceso de administración</a>
+</footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/motor.js"></script>
+<script src="js/cripto.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
