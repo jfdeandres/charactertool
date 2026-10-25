@@ -1,0 +1,30 @@
+{
+ "formato": "tf-lifo-cifrado-1",
+ "kdf": {
+  "alg": "PBKDF2-SHA256",
+  "iter": 600000,
+  "idIter": 100000
+ },
+ "idSalt": "jWtrFtC7mVn3bHai8CAjeg==",
+ "admin": {
+  "id": "b7oLQ047jT3g2rWBWrwwiZvIaI3o49Dn6Pco7e4Ztwo",
+  "salt": "Bfw7ezo/mYeoxHkh4TzTkA==",
+  "ck": "tpAml2yn87lW/fiP9aGHL1V8A/0rRVq8knY1aQJG/cPrUyZucWtZqg==",
+  "ak": "DWvmlqWILV6jv937GMv53IpWzrS88u6cd94tYp8zrDB3oqulbioaXw=="
+ },
+ "usuarios": {
+  "dthjoPG0UFzM0qQrKbzJIUYa8PywZ2c-CY9oD_mVNqs": {
+   "salt": "3aEeHxSzU+79/y6hUHaIgw==",
+   "ck": "rKWCUXOOENnfhKfTMOC8gKQbDzyXA41Ojv44OkHCYz4DkaWa21wgCA=="
+  },
+  "vjg5s1cLhqyulARnrNU0-9j-1BVuB4VIQi_EjgYlMSo": {
+   "salt": "ueB4dhZbfaBC0yZmbyW0+w==",
+   "ck": "qBp1vu/GU0OpML/kbiRCmp0LdFX3YhWtjuCmNtf+HLT/I/M7VQYaLA=="
+  }
+ },
+ "registro": {
+  "iv": "vqdtwOgcyALt/C3/",
+  "ct": "678VRmRiU0lklBZyMOLMy5OOPZJUcSt5KKYJfGpvgLQX5QPDgDPPw7/UN46O/VxqowYLHz5u0+fwrnyjk8oFViDX3QDRvR+7hdmj3LdV3b4Minlf/isgWwjJd+8NPR1xjPIc5p1T5vES+LSVJnnojhf1JWfTk397+4vflMs9ViARDb95cnJiVkfm+xNQkNXueApuh+euyfLDqA9ltO15xlKz0+Fm87MMPCtd48kcqGnxDU7AruGblbPRg44IU+tA6YXLgaOghPdaQf3Keh61hm7biKCjatRVZl7YVtbGaqG+NI9mqw5c1Vcls35/WhZZnXif31EMH4miJA0K4++lQ3yN6Q=="
+ },
+ "actualizado": "2026-10-25T07:55:24.414Z"
+}
