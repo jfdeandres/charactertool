@@ -1,0 +1,26 @@
+{
+ "formato": "tf-lifo-cifrado-1",
+ "kdf": {
+  "alg": "PBKDF2-SHA256",
+  "iter": 600000,
+  "idIter": 100000
+ },
+ "idSalt": "AFOV22vRURj/BBaa8w0CFw==",
+ "admin": {
+  "id": "49ePplKH0UnUIHjkUU2ItVQEcjXBR16G36bvhIa_kqc",
+  "salt": "1Ry2EYQW8uwWu85/9ZXrpg==",
+  "ck": "luToRtMgj8CVkWfupKAODKVS/mWPDkvXJbCBvn+zV5zmJsZlLrEzaw==",
+  "ak": "Wot2Msi+evyPgR8y94OUqKJ0st5brEOIhWQaNoH5M3FKgzOuw56M4g=="
+ },
+ "usuarios": {
+  "ot7I0eqaH8-5Rc8oZ_S4Wt_GjocXMG_zA8lwvCkkxaI": {
+   "salt": "EorcTmu6dgNqkSrXrSO2xQ==",
+   "ck": "6A4yT9pyDJYmD9fDnrEpRinfXk52uJ0LpmYGRLfmn8UH295zvrMHrQ=="
+  }
+ },
+ "registro": {
+  "iv": "ev0x+JRXwJUdMDxk",
+  "ct": "LF50F9UH4TIqPOWPZcnWMqbVTw4p9Vqi73jSnA7LYXFmpo/8nr/snzpeV7zpZjelquWrAVJMNBnb3g5O+I2hjDhQU27FDb4FYuQmneYpEpFcfd2OI3vT7/J4n1+zYcwK1G6Pm+th22H3KMA/X+X0XZi5DJPWpK/K0//Huk5emM2gv8aUkbmTVebU8g=="
+ },
+ "actualizado": "2026-10-25T08:07:53.868Z"
+}
